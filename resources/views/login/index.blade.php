@@ -7,7 +7,7 @@
 	<h1>Login Page</h1>
 
 	<form method="post">
-		
+		@csrf
 		<fieldset>
 			<legend>Login</legend>
 			<table>
@@ -27,5 +27,7 @@
 		</fieldset>
 	
 	</form>
+
+	{{session('msg')}}
 </body>
 </html>

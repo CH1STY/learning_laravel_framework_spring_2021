@@ -10,6 +10,7 @@
     <h1>Edit User, {{ $user['id']}}</h1>
 
     <form method="post">
+	@csrf
 		<fieldset>
 			<legend>Edit</legend>
 			<table>

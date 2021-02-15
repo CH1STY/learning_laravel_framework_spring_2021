@@ -8,7 +8,7 @@
 </head>
 <body>
     <form action="" method="post">
-    
+        @csrf
         <h3>Are you sure you wants to delete user with ID: {{$id}} ?</h3>
         <button type="submit">Yes</button>
     

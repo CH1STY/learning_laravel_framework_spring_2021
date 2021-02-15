@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Create New user</h1>
-
+	@csrf
     <form method="post">
 		<fieldset>
 			<legend>Add</legend>
