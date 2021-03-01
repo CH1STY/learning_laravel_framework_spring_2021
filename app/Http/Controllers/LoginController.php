@@ -6,19 +6,34 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
-    public function index(){
-
+    public function index(Request $request){
+        if($request->session()->has('username'))
+        {
+            return redirect('/home');
+        }
         return view('login.index');
     }
 
     public function verify(Request $req){
 
         
-        $user = User::where('password',$req->username)
+        $user = User::where('password',$req->password)
                     ->where('username',$req->username)
-                    ->get();
+                    ->first();
 
-        print_r($user);
+        if($user!=null)
+        {
+            $req->session()->put('username',$user->username);
+            $req->session()->put('id',$user->id);
+            return redirect('/home');
+
+
+        }
+        else
+        {
+            $req->session()->flash('msg',"Login Credentials Error");
+            return redirect('/login');
+        }
         
         
         /*if($req->username == "" || $req->password == ""){

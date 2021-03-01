@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -47,16 +48,7 @@ class HomeController extends Controller
 
     public function edit($id){
 
-        $userlist= $this->getUserlist();
-        $user = [];
-
-        foreach($userlist as $u){
-            if($u['id'] == $id ){
-                $user = $u;
-                break;
-            }
-        }
-
+        $user = User::find($id);
 
         return view('home.edit')->with('user', $user);
     }
@@ -65,27 +57,34 @@ class HomeController extends Controller
     public function update($id, Request $req){
 
         //updating DB or model
-        $count = 0;
-        $userlist = $this->getUserlist();
-        foreach($userlist as $u){
-            if($u['id'] == $id ){
-                break;
-            }
-            $count+=1;
-        }
+        
+        $user = User::find($id);
 
-        $userlist[$count]['name'] = $req['username'];
-        $userlist[$count]['password'] = $req['password'];
-        $userlist[$count]['email'] = $req['email'];
+        $user->username = $req->username;
+        $user->password = $req->password;
+        $user->email = $req->email;
+        $user->userType = $req->usertype;
+        $user->save();
 
-        return view('home.list')->with('list', $userlist);
+        return redirect('/home/userlist');
         
     }
     
     public function delete($id, Request $req){
 
         //updating DB or model
-        return view('home.delete')->with('id', $id);
+
+        if($user = User::find($id))
+        {
+
+            return view('home.delete')->with('user', $user);
+        }
+        else
+        {
+            return redirect('/home/userlist');
+        }
+
+
     }
     
    
@@ -94,17 +93,35 @@ class HomeController extends Controller
 
         //updating DB or model
 
-        $count = 0;
-        $userlist = $this->getUserlist();
-        foreach($userlist as $u){
-            if($u['id'] == $id ){
-                break;
-            }
-            $count+=1;
-        }
-        unset($userlist[$count]);
+    
+        switch($req->input)
+        {
+            case 'delete':
+                
+                if(User::destroy($id))
+                {
+                   
+                   return redirect('/home/userlist');
+                }
+                else
+                {
+                    
+                    return redirect('/home/delete/'.$id);
+                }
 
-        return view('home.list')->with('list', $userlist);
+                break;
+            case 'back':
+                return redirect('/home/userlist');
+                break;
+            default :
+                return redirect('/home/userlist');
+                break;
+
+        
+                
+
+        }
+
         
     }
 
@@ -117,10 +134,14 @@ class HomeController extends Controller
 
     public function getUserlist (){
 
-        return [
+        $userlist = User::all();
+
+        return $userlist;
+
+        /*return [
                 ['id'=>1, 'name'=>'alamin', 'email'=> 'alamin@aiub.edu', 'password'=>'123'],
                 ['id'=>2, 'name'=>'abc', 'email'=> 'abc@aiub.edu', 'password'=>'456'],
                 ['id'=>3, 'name'=>'xyz', 'email'=> 'xyz@aiub.edu', 'password'=>'789']
-            ];
+            ];*/
     }
 }

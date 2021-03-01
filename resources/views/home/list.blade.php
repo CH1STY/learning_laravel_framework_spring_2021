@@ -19,19 +19,17 @@
             <td>ID</td>
             <td>NAME</td>
             <td>EMAIL</td>
-            <td>PASSWORD</td>
             <td>Action</td>
         </tr>
 
         @foreach($list as $value)
         <tr>
-            <td>{{ $value['id'] }}</td>
-            <td>{{ $value['name'] }}</td>
-            <td>{{ $value['email'] }}</td>
-            <td>{{ $value['password'] }}</td>
+            <td>{{ $value->id }}</td>
+            <td>{{ $value->username }}</td>
+            <td>{{ $value->email }}</td>
             <td>
-                <a href="/home/edit/{{ $value['id'] }}">Edit</a> |
-                <a href="/home/delete/{{ $value['id'] }}">Delete</a>
+                <a href="/home/edit/{{ $value->id }}">Edit</a> |
+                <a href="/home/delete/{{ $value->id }}">Delete</a>
             </td>
         </tr>
         @endforeach

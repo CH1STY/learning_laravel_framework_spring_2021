@@ -28,6 +28,6 @@
 	
 	</form>
 
-	{{session('msg')}}
+	{{session('msg')}} 
 </body>
 </html>
