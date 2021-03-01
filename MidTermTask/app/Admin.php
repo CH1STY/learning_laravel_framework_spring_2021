@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class user extends Model
+class admin extends Model
 {
-    protected $table = 'users';
+    //
+    protected $table = 'admins';
     protected $primaryKey = 'id';
     
-    public $timestamps = false;
+    public $timestamps = true;
 
     const CREATED_AT = 'date_added';
     const UPDATED_AT = 'last_updated';

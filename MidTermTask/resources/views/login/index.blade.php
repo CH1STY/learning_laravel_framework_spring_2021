@@ -20,10 +20,14 @@
     <p style="color:red">{{$err}}</p>
     @endforeach
     <p style="color:red">{{session('errorMsg')}}</p>
+    <p style="color:greem">{{session('successMsg')}}</p>
 
 
     <button style="margin-top:50px" type="submit">Login</button>
     </form>
+
+    <a href="{{route('register')}}"><h4>To Register Click Here!</h4></a>
+    
 
 </div>
 </body>

@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>@yield('title')</title>
 </head>
 <body>
+<div align="center" style="width:100%">
 
-<h1>Welcome User {{session('username')}}</h1>
+@yield('container')
 
-<a href="{{route('logout')}}"><button >Logout</button></a>
+
+</div>
     
 </body>
 </html>

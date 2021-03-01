@@ -7,8 +7,27 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.dashboard');
+        if($request->session()->get('usertype')=='admin')
+        {
+            return view('user.admin');
+            
+        }
+        elseif($request->session()->get('usertype')=='accountant')
+        {
+            
+            return view('user.accountant');
+        }
+        elseif($request->session()->get('usertype')=='customer')
+        {
+            
+            return view('user.customer');
+        }
+        elseif($request->session()->get('usertype')=='vendor')
+        {
+            
+            return view('user.vendor');
+        }
     }
 }

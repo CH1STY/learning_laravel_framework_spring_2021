@@ -19,6 +19,8 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@verify');
 
-Route::get('/user', 'DashboardController@index')->name('user');
+Route::get('/user', 'DashboardController@index')->name('dashboard');
 
 Route::get('/logout', 'LogoutController@index')->name('logout');
+Route::get('/create', 'RegistrationController@index')->name('register');
+Route::post('/create', 'RegistrationController@verify');
