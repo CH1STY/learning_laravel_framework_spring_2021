@@ -10,6 +10,8 @@
 <body>
 <div align="center" style="width:100%">
 
+<p  style="color:red;margin-top:5%;"> {{session('userPermissionError')}}</p>
+
 @yield('container')
 
 

@@ -8,6 +8,7 @@ Physical Store
 
 <h1>Physical Store Sales</h1>
 <p style="color:green;">{{session('successMsg')}}</p>
+<p style="color:red">{{session('errMsg')}}</p>
 <table>
     <tr>
         <td>Today's Sales:</td>
@@ -39,6 +40,7 @@ Physical Store
 @foreach ($errors->all() as $err)
         <p style="color:red">{{$err}}</p>
         @endforeach
+        
 
 <form action="" method="post">
 @csrf

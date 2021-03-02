@@ -9,6 +9,14 @@ use App\SocialStore;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\SellRequest;
+use App\Http\Requests\ExcelFileRequest;
+use App\Exports\PhysicalExportSold;
+use App\Exports\PhysicalExportPending;
+use App\Imports\PhysicalImport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
 class SalesController extends Controller
 {
     //
@@ -53,6 +61,29 @@ class SalesController extends Controller
     {
 
         return view('sales.physicallogs');
+    }
+    public function physicalLogsStore(ExcelFileRequest $request)
+    {
+        if(Excel::import(new PhysicalImport,$request->file))
+        {
+            $request->session()->flash('successMsg','Excel File Inserted Sucessfully');
+        }
+        else
+        {
+            $request->session()->flash('errMsg','Excel Insertion Failed');
+            
+        }
+        return redirect()->route('sales.physical');
+    }
+    public function physicalLogsSold(Request $request)
+    {
+        return Excel::download(new PhysicalExportSold, 'MonthlyReportSold.xlsx');
+        
+    }
+    public function physicalLogsPending(Request $request)
+    {
+        return Excel::download(new PhysicalExportPending, 'MonthlyReportPending.xlsx');
+        
     }
     public function ecommerce(Request $request)
     {
