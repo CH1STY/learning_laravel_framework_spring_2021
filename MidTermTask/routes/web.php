@@ -28,6 +28,9 @@ Route::post('/create', 'RegistrationController@verify');
 Route::get('/system/sales', 'SalesController@index')->name('sales');
 
 Route::get('/system/sales/physical_store', 'SalesController@physical')->name('sales.physical');
+Route::post('/system/sales/physical_store', 'SalesController@physicalVerify')->name('sales.physical');
+
+Route::get('/system/sales/physical_store/sales_log', 'SalesController@physicalLogs')->name('sales.physical.logs');
 Route::get('/system/sales/ecommerce_store', 'SalesController@ecommerce')->name('sales.ecommerce');
 Route::get('/system/sales/social_media_store', 'SalesController@social')->name('sales.social');
 
