@@ -66,7 +66,7 @@
     
     
     </form>
-
+    <a href="{{route('root')}}"><button style="margin:10px">Go Back</button></a>
 </div>
     
 </body>

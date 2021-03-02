@@ -26,7 +26,7 @@ class RegistrationController extends Controller
         $customer->usertype= 'active';
         $customer->save();
 
-        $request->session()->flash('successMsg','User Created Try Logging In');
+        $request->session()->flash('successMsg','User Created Try Logging In!');
         return redirect()->route('login');
     }
 }

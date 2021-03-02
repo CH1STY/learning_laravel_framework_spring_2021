@@ -12,10 +12,14 @@ use App\Vendor;
 class LoginController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
+        if($request->session()->has('username'))
+        {
+            return redirect()->route('dashboard');
+        }
         
-    
+        
         return view('login.index');
     }
 
