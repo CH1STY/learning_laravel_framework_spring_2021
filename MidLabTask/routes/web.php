@@ -39,6 +39,13 @@ Route::group(['middleware'=>'adminSess'],function(){
     Route::get('/system/sales/physical_store/sales_log/download/reportSold','SalesController@physicalLogsSold')->name('sales.physical.logs.download.sold');
     Route::get('/system/sales/physical_store/sales_log/download/reportPending','SalesController@physicalLogsPending')->name('sales.physical.logs.download.pending');
 
+    Route::get('/system/product_management','ProductController@index')->name('product');
+
+    Route::get('/system/product_management/existing_products','ProductController@existing')->name('product.existing');
+    Route::get('/system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
+    Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
+
+
 });
 
 

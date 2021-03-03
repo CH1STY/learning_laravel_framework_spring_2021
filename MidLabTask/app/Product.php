@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vendor extends Model
+class Product extends Model
 {
     //
-    protected $table = 'vendors';
+    protected $table = 'products';
+
     protected $primaryKey = 'id';
+    protected $fillable = array('product_name','category','unit_price','status','date_added','last_updated');
+
     
     public $timestamps = true;
 
