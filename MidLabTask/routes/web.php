@@ -42,7 +42,10 @@ Route::group(['middleware'=>'adminSess'],function(){
     Route::get('/system/product_management','ProductController@index')->name('product');
 
     Route::get('/system/product_management/existing_products','ProductController@existing')->name('product.existing');
+    Route::get('/system/product_management/existing_products/{id}','ProductController@existingEdit')->name('product.existing.edit');
+    
     Route::get('/system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
+    Route::get('/system/product_management/upcoming_products/{id}','ProductController@upcomingEdit')->name('product.upcoming.edit');
     Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
 
 

@@ -17,7 +17,7 @@ class AdminVerify
     {
         if($request->session()->has('username'))
         {
-            if($request->session()->get('usertype')=='admin')
+            if($request->session()->get('usertype')=='admin' )
             {
 
                 return $next($request);

@@ -14,11 +14,28 @@ class ProductController extends Controller
     }
     public function existing(Request $request)
     {
-        return view('product.existing');
+
+        $products = Product::where('status','existing')
+                            ->get();
+
+        return view('product.existing')->with('products',$products);
+    }
+    public function existingEdit(Request $request)
+    { 
+
+        return view('product.existingEdit');
     }
     public function upcoming(Request $request)
-    {
-        return view('product.upcoming');
+    {   
+        $products = Product::where('status','upcoming')
+                            ->get();
+
+        return view('product.upcoming')->with('products',$products);
+    }
+    public function upcomingEdit(Request $request)
+    { 
+
+        return view('product.upcomingEdit');
     }
     public function add(Request $request)
     {
