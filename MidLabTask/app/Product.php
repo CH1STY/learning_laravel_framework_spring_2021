@@ -10,7 +10,7 @@ class Product extends Model
     protected $table = 'products';
 
     protected $primaryKey = 'id';
-    protected $fillable = array('product_name','category','unit_price','status','date_added','last_updated');
+    protected $fillable = array('product_name','category','unit_price','quantity','status','date_added','last_updated');
 
     
     public $timestamps = true;

@@ -24,6 +24,7 @@ Route::get('/user', 'DashboardController@index')->name('dashboard')->middleware(
 Route::get('/logout', 'LogoutController@index')->name('logout');
 Route::get('/create', 'RegistrationController@index')->name('register');
 Route::post('/create', 'RegistrationController@verify');
+
 Route::group(['middleware'=>'adminSess'],function(){
 
     Route::get('/system/sales', 'SalesController@index')->name('sales');
@@ -39,15 +40,25 @@ Route::group(['middleware'=>'adminSess'],function(){
     Route::get('/system/sales/physical_store/sales_log/download/reportSold','SalesController@physicalLogsSold')->name('sales.physical.logs.download.sold');
     Route::get('/system/sales/physical_store/sales_log/download/reportPending','SalesController@physicalLogsPending')->name('sales.physical.logs.download.pending');
 
+    //Product Management Part
     Route::get('/system/product_management','ProductController@index')->name('product');
-
-    Route::get('/system/product_management/existing_products','ProductController@existing')->name('product.existing');
-    Route::get('/system/product_management/existing_products/{id}','ProductController@existingEdit')->name('product.existing.edit');
     
-    Route::get('/system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
-    Route::get('/system/product_management/upcoming_products/{id}','ProductController@upcomingEdit')->name('product.upcoming.edit');
-    Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
+    //Existing Product PART
+    Route::get('/system/product_management/existing_products','ProductController@existing')->name('product.existing');
+    Route::get('/system/product_management/existing_products/edit/{id}','ProductController@existingEdit')->name('product.existing.edit');
+    Route::get('/system/product_management/existing_products/delete/{id}','ProductController@existingDelete')->name('product.existing.delete');
+    Route::get('/system/product_management/existing_products/product/{product_id}/vendor_details/{vendor_id}','ProductController@existingDetails')->name('product.existing.details');
+    //-------------------
 
+    //Upcoming Product Part
+    Route::get('/system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
+    Route::get('/system/product_management/upcoming_products/edit/{id}','ProductController@upcomingEdit')->name('product.upcoming.edit');
+    //---------------------
+    
+    //Product Adding Part
+    Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
+    //-------------------
+    //-----------------------------------------------------
 
 });
 

@@ -31,14 +31,18 @@ Upcoming Product
             <td>{{$product->product_name}}</td>
             <td>{{$product->category}}</td>
             <td>{{$product->unit_price}}</td>
-            <td><a href="{{route('product.upcoming.edit',['id'=> $product->id])}}"><button style="margin:5px;padding:5px" >Edit</button></a></td>
+            <td><a href="{{route('product.upcoming.edit',['id'=> $product->id ])}}"><button style="margin:5px;padding:5px" >Edit</button></a></td>
             
         </tr>
     @endforeach
     </tbody>
 
 
-</table>
+</table><br>
+
+<div style="display:flex; justify-content:center;">
+        {{$products->links()}}
+</div>
 
 
 

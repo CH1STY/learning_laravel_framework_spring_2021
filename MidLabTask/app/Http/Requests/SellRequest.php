@@ -24,7 +24,7 @@ class SellRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_name' => 'required|alpha|min:3|max:30',
+            'customer_name' => 'required|regex:/^[\pL\s\-]+$/u|min:3|max:30',
             'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
             'phone' => ['required','numeric','digits_between:11,15'],
             'product_id' => 'required',

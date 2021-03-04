@@ -17,7 +17,8 @@ Product Management
 <br>
 
 
-<a href="{{route('logout')}}"><button style="margin-top:5%;" >Logout</button></a>
+<a href="{{route('dashboard')}}"><button style="margin-top:5%;margin-bottom:2%;" >Go Back</button></a><br>
+<a href="{{route('logout')}}"><button >Logout</button></a>
 
 
 @endSection
