@@ -10,7 +10,7 @@
 <body>
 <div align="center" style="width:100%">
 
-<p  style="color:red;margin-top:5%;"> {{session('userPermissionError')}}</p>
+<p style="color:red;margin-top:5%; @if(session('userPermissionError')) display:block;@else display:none @endif   "> {{session('userPermissionError')}}</p>
 
 @yield('container')
 

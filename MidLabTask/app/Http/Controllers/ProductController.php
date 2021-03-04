@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Http\Requests\ProductEditRequest;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,7 @@ class ProductController extends Controller
     {
 
         $products = new Product;
+        $products = $products->where('status','existing');
         $hasSort = false;
 
         if($request->has('sortType'))
@@ -47,11 +49,57 @@ class ProductController extends Controller
 
         return view('product.existing')->with('products',$products);
     }
-    public function existingEdit(Request $request)
+    public function existingEdit(Request $request,$id)
+    { 
+        $product = Product::find($id);
+
+        if(isset($product))
+        {   
+            $msg ="";
+            return view('product.existingEdit',compact('msg','id','product'));
+        }
+        else
+        {
+            
+            return view('product.existingEdit')->with('msg','Product ID ERROR')->with('id',$id);
+        }
+
+    }
+
+    public function existingEditUpdate(ProductEditRequest $request,$id)
     { 
 
-        return view('product.existingEdit');
+        $product = Product::find($id);
+
+        if($product)
+        {
+            $product->product_name = $request->product_name;
+            $product->category = $request->category;
+            $product->unit_price = $request->unit_price;
+            $product->status = $request->status;
+            if($product->save())
+            {
+                $msg = "Product Updated Successfully!, Product ID Updated : ".$id;
+                $request->session()->flash('productUpdateMsgSucc',$msg);
+            }
+            else
+            {
+
+                $request->session()->flash('productUpdateMsgFail','Product Updated Failed');
+            }
+
+        }
+        else
+        {
+            $request->session()->flash('productUpdateMsgFail','Product Updated Failed');
+            
+        }
+        return redirect()->route('product.existing.edit',['id'=>$id]);
+
     }
+
+    
+
     public function existingDelete(Request $request,$id)
     { 
         $product = Product::find($id);

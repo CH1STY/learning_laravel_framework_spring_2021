@@ -45,7 +45,10 @@ Route::group(['middleware'=>'adminSess'],function(){
     
     //Existing Product PART
     Route::get('/system/product_management/existing_products','ProductController@existing')->name('product.existing');
+    
     Route::get('/system/product_management/existing_products/edit/{id}','ProductController@existingEdit')->name('product.existing.edit');
+    Route::post('/system/product_management/existing_products/edit/{id}','ProductController@existingEditUpdate')->name('product.existing.edit');
+    
     Route::get('/system/product_management/existing_products/delete/{id}','ProductController@existingDelete')->name('product.existing.delete');
     Route::get('/system/product_management/existing_products/product/{product_id}/vendor_details/{vendor_id}','ProductController@existingDetails')->name('product.existing.details');
     //-------------------
@@ -58,6 +61,7 @@ Route::group(['middleware'=>'adminSess'],function(){
     //Product Adding Part
     Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
     //-------------------
+
     //-----------------------------------------------------
 
 });
