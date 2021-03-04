@@ -20,6 +20,8 @@
     @foreach ($errors->all() as $err)
     <p style="color:red">{{$err}}</p>
     @endforeach
+
+
     <p style="color:red">{{session('errorMsg')}}</p>
     <p style="color:green">{{session('successMsg')}}</p>
 

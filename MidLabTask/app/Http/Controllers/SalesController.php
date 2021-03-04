@@ -105,17 +105,14 @@ class SalesController extends Controller
                         ->first();
 
                         
-        $averageAmountList = DB::select(DB::raw("SELECT sum(total_price) as avgprice from physical_store_channel where Month(date_sold) = Month(CURRENT_DATE) GROUP by date_sold"));
-        
-        
-        $totalPrice = 0;
-        $count = 0;
-        foreach($averageAmountList as $average)
-        {
-            $count =$count+1;
-            $totalPrice = $totalPrice+ intval($average->avgprice);
-        }
-        $averageAmount = $totalPrice/$count;
+        //$averageAmountList = DB::select(DB::raw("SELECT sum(total_price) as avgprice from physical_store_channel where Month(date_sold) = Month(CURRENT_DATE)"))[0];
+        $averageAmountList = PhysicalStore::whereMonth('date_sold',date('m'))
+                                            ->sum('total_price') ;
+                                            
+
+        $thisMonthsDay = (date('d'));
+       
+        $averageAmount = $averageAmountList/$thisMonthsDay;
                         
         $physicalIndexInfo = ['pToday'=>$info['pToday'],'pSeven'=>$info['pSeven'],'bestProduct'=>$mostSoldProduct->product_name,'average'=>$averageAmount];
 

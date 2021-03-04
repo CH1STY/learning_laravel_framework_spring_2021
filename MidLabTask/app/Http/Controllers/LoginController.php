@@ -23,6 +23,7 @@ class LoginController extends Controller
         return view('login.index');
     }
 
+
     public function verify(loginRequest $request)
     {
         if($user = Admin::where('email',$request->email)

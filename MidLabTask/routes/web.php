@@ -47,17 +47,24 @@ Route::group(['middleware'=>'adminSess'],function(){
     Route::get('/system/product_management/existing_products','ProductController@existing')->name('product.existing');
     
     Route::get('/system/product_management/existing_products/edit/{id}','ProductController@existingEdit')->name('product.existing.edit');
-    Route::post('/system/product_management/existing_products/edit/{id}','ProductController@existingEditUpdate')->name('product.existing.edit');
+    Route::post('/system/product_management/existing_products/edit/{id}','ProductController@existingEditUpdate');
     
     Route::get('/system/product_management/existing_products/delete/{id}','ProductController@existingDelete')->name('product.existing.delete');
-    Route::get('/system/product_management/existing_products/product/{product_id}/vendor_details/{vendor_id}','ProductController@existingDetails')->name('product.existing.details');
     //-------------------
-
+    
     //Upcoming Product Part
     Route::get('/system/product_management/upcoming_products','ProductController@upcoming')->name('product.upcoming');
-    Route::get('/system/product_management/upcoming_products/edit/{id}','ProductController@upcomingEdit')->name('product.upcoming.edit');
-    //---------------------
     
+    Route::get('/system/product_management/upcoming_products/edit/{id}','ProductController@upcomingEdit')->name('product.upcoming.edit');
+    Route::post('/system/product_management/upcoming_products/edit/{id}','ProductController@upcomingEditUpdate');
+    
+    Route::get('/system/product_management/upcoming_products/delete/{id}','ProductController@upcomingDelete')->name('product.upcoming.delete');
+    
+    //---------------------
+
+    //Product_Details
+    Route::get('/system/product_management/product/{product_id}/vendor_details/{vendor_id}','ProductController@productDetails')->name('product.details');
+    //--------------------
     //Product Adding Part
     Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
     //-------------------

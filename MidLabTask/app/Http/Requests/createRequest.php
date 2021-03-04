@@ -28,13 +28,15 @@ class createRequest extends FormRequest
     {
         return [
             'full_name' => 'required|regex:/^[\pL\s\-]+$/u|min:3|max:20',
-            'username' => ['required',new usernameDbCheck(),],
+            'username' => ['required',new usernameDbCheck(),'alpha_dash'],
             'email' => ['required','email','min:10','max:50',new emailDbCheck()],
             'phone' => ['required','digits:11','numeric',new phoneDbCheck()],
             'city' => 'required|alpha|min:3|max:20',
             'country' => 'required|alpha|min:3|max:20',
             'companyName' => 'required|alpha|min:3|max:20',
-            'password' => 'confirmed|required|min:6',
+            'password' => 'confirmed|required|min:6|alpha_num',
         ];
     }
+
+    
 }

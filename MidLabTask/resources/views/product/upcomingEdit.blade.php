@@ -2,12 +2,12 @@
 
 
 @section('title')
-Existing Product Edit
+Upcoming Product Edit
 @endSection
 
 @section('container')
 
-<h1>Product Edit (Existing)</h1>
+<h1>Product Edit (Upcoming)</h1>
 
 
 <p style="color:red">{{$msg}}</p>
@@ -26,7 +26,9 @@ Existing Product Edit
         @endforeach
 <!--Form TABLE -->
 
-
+@if(session('productUpdateMsgSucc'))
+    <p style="color:green">{{session('productUpdateMsgSucc')}}</p>
+@endif
 @if(session('productUpdateMsgFail'))
     <p style="color:red">{{session('productUpdateMsgFail')}}</p>
 @endif
@@ -49,6 +51,7 @@ Existing Product Edit
                     <option value="Makeup" @if ($product->category=='Makeup') selected @endif>Makeup</option>
                     <option value="Grocery" @if ($product->category=='Grocery') selected @endif>Grocery</option>
                 </select>
+
             </td>
         </tr>
         <tr>
@@ -76,7 +79,7 @@ Existing Product Edit
 <!------------------------------------->
 @endif
 
-<a href="{{route('product.existing')}}"><button style="margin-top:5%;margin-bottom:5px;" >Go BACK</button></a><br>
+<a href="{{route('product.upcoming')}}"><button style="margin-top:5%;margin-bottom:5px;" >Go BACK</button></a><br>
 
 <a href="{{route('logout')}}"><button >Logout</button></a>
 

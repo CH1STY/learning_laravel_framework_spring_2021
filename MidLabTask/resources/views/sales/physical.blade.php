@@ -19,10 +19,6 @@ Physical Store
         <td>{{$info['pSeven']}} items</td>
     </tr>
     <tr>
-        <td>This week Sales:</td>
-        <td>{{$info['pSeven']}} items</td>
-    </tr>
-    <tr>
         <td>Most Sold Product:</td>
         <td>{{$info['bestProduct']}}</td>
     </tr>

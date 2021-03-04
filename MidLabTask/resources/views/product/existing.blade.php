@@ -22,9 +22,12 @@ Existing Products
       }
 </script>
 
-
 <h1>Existing Product List</h1>
 <br>
+
+@if(session('productUpdateMsgSucc'))
+    <p style="color:green">{{session('productUpdateMsgSucc')}}</p>
+@endif
 
 
 <a style="margin-right:30px;" href="{{route('product.existing')}}">Existing Product</a>
@@ -65,7 +68,7 @@ Existing Products
             <td>{{substr($product->date_added,0,10)}}</td>
             <td><a href="{{route('product.existing.edit',['id'=> $product->id])}}"><button style="margin:5px;padding:5px" >Edit</button></a></td>
             <td><a onclick="return check()" class='delete' href="{{route('product.existing.delete',['id'=> $product->id])}}"><button style="margin:5px;padding:5px" >Delete</button></a></td>
-            <td><a href="{{route('product.existing.details',['product_id'=> $product->id,'vendor_id'=> $product->vendor_id])}}"><button style="margin:5px;padding:5px" >View Details</button></a></td>
+            <td><a href="{{route('product.details',['product_id'=> $product->id,'vendor_id'=> $product->vendor_id])}}"><button style="margin:5px;padding:5px" >View Details</button></a></td>
             
         </tr>
     @endforeach
