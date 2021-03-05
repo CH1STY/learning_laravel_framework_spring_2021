@@ -14,6 +14,7 @@ class RegistrationController extends Controller
     }
     public function verify(createRequest $request)
     {
+        
         $customer = new Customer;
         $customer->full_name= $request->full_name;
         $customer->username = $request->username;

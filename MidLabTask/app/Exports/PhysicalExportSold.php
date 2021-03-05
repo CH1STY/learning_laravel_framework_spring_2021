@@ -13,7 +13,8 @@ class PhysicalExportSold implements FromQuery //, WithHeadings
     */
     public function query()
     {
-        return PhysicalStore::query()->whereMonth('date_sold',date('m'))->where('status','sold');
+        return PhysicalStore::query()->where('status','sold')->whereYear('date_sold',date('Y'))->whereMonth('date_sold',date('m'));
+
     }
     /*public function headings():array
     {

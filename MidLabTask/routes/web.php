@@ -67,6 +67,7 @@ Route::group(['middleware'=>'adminSess'],function(){
     //--------------------
     //Product Adding Part
     Route::get('/system/product_management/add_product','ProductController@add')->name('product.adding');
+    Route::post('/system/product_management/add_product','ProductController@addVerify');
     //-------------------
 
     //-----------------------------------------------------

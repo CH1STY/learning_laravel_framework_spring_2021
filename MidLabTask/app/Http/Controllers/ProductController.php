@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Vendor;
 use App\Http\Requests\ProductEditRequest;
+use App\Http\Requests\ProductAddingRequest;
 
 class ProductController extends Controller
 {
@@ -257,6 +258,31 @@ class ProductController extends Controller
 
     public function add(Request $request)
     {
-        return view('product.add');
+        $vendors = Vendor::select('full_name','id')
+                                ->distinct()
+                                ->get();
+
+        return view('product.add')->with('vendors', $vendors);
+    }
+    public function addVerify(ProductAddingRequest $request)
+    {   
+        
+        $product= new Product;
+        $product->product_name = $request->product_name;
+        $product->vendor_id = $request->vendor_id;
+        $product->category = $request->category;
+        $product->unit_price = $request->unit_price;
+        $product->status = $request->status;
+
+        if($product->save())
+        {
+            $request->session()->flash('successMsg',"Product Added New Product Id: ".$product->id." Product Status: ".$product->status."");
+        }else
+        {
+            $request->session()->flash('failMsg',"Product Adding Failed");
+            
+        }
+        
+        return redirect()->route('product.adding');
     }
 }

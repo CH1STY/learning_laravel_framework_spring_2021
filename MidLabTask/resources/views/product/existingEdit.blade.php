@@ -44,7 +44,7 @@ Existing Product Edit
                 <select name="category" id="">
                     <option value="" selected>Select A Category</option>
                     <option value="Liquid" @if ($product->category=='Liquid') selected @endif>Liquid</option>
-                    <option value="Vegatable" @if ($product->category=='Vegetable') selected @endif>Vegetable</option>
+                    <option value="Vegetable" @if ($product->category=='Vegetable') selected @endif>Vegetable</option>
                     <option value="Meat" @if ($product->category=='Meat') selected @endif>Meat</option>
                     <option value="Makeup" @if ($product->category=='Makeup') selected @endif>Makeup</option>
                     <option value="Grocery" @if ($product->category=='Grocery') selected @endif>Grocery</option>
